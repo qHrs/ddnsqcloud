@@ -10,35 +10,59 @@
 import hmac
 import base64
 import time
+import re
+import subprocess
+import random
+import urllib.request
+from urllib import parse
 from hashlib import sha256
 
-def main():
-'''
-https://cvm.api.qcloud.com/v2/index.php?
-Action=DescribeInstances
-&SecretId=AKIDsXv46tDggxyiCRd8oL0b9TW6UwGmo4rO
-&Region=ap-chengdu-1
-&Timestamp=1584785190
-&Nonce=11886
-&Signature=q/U+S9ETv9t2Tr2nBqrs3rwlKYMu+404mNCu4xh1NAw=
-&SignatureMethod=HmacSHA256
-&Action=RecordList
-&offset=0
-&length=20
-&domain=qpanda.vip
-'''
 
-def getIPAddress():
-
-
-def getSignature():
-    appsecret = "AKIDsXv46tDggxyiCRd8oL0b9TW6UwGmo4rO".encode('utf-8')  # 秘钥
-    data = "GETcvm.api.qcloud.com/v2/index.php?Action=RecordList&domain=qpanda.vip&length=20&Nonce=59485&offset=0&Region=ap-chengdu-1&SecretId=AKIDsXv46tDggxyiCRd8oL0b9TW6UwGmo4rO&Signature=mysignature&SignatureMethod=HmacSHA256&Timestamp=1584784792".encode(
-        'utf-8')  # 加密数据
-    signature = base64.b64encode(hmac.new(appsecret, data, digestmod=sha256).digest())
+def getSignature(url):
+    appsecret = "SSDoALG0UjjUzPO4XjWVEjyxgKOHUP5V".encode('utf-8')  # 秘钥
+    data = "GET" + url  # 加密数据
+    signature = base64.b64encode(hmac.new(appsecret, data.encode("utf8"), digestmod=sha256).digest())
     return signature
 
 
+def main():
+
+    secretId = "AKIDsXv46tDggxyiCRd8oL0b9TW6UwGmo4rO"
+    timestamp = int(time.time())
+    nonce = random.randint(1,10)
+    argDict = {'SecretId': 'AKIDsXv46tDggxyiCRd8oL0b9TW6UwGmo4rO',
+              'Region': 'ap-chengdu',
+              'Timestamp': timestamp,
+              'Nonce': nonce,
+              'SignatureMethod': 'HmacSHA256',
+              'Action': 'RecordList',
+              'offset': '0',
+              'length': '20',
+              'domain': 'qpanda.vip'}
+
+    argDict = sorted(argDict.items(), key=lambda argDict : argDict[0])
+    argUrl = urllib.parse.urlencode(argDict)
+
+    getUrl = "cns.api.qcloud.com/v2/index.php?" + argUrl
+    signature = getSignature(getUrl)
+    getUrl = "https://" + getUrl + "&Signature=" + parse.quote(signature)
+    print(getUrl)
+
+    response = urllib.request.urlopen(getUrl)
+    print(response.read().decode('utf-8'))
+
+'''
+# 获取IPV6地址 适用于 linux系统
+def getIPAddress():
+   getIPV6_process = subprocess.Popen("ifconfig | grep global | awk '{print $2}'", shell = True, stdout = subprocess.PIPE)
+   output = (getIPV6_process.stdout.read())
+   ipv6_pattern='(([a-f0-9]{1,4}:){7}[a-f0-9]{1,4})'
+   m = re.search(ipv6_pattern, str(output))
+   if m:
+       return m.group()
+   else:
+       return None
+'''
 
 if __name__ == '__main__':
     main()
