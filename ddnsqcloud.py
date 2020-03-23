@@ -14,6 +14,7 @@ import time
 import re
 import subprocess
 import random
+import string
 import urllib.request
 from urllib import parse
 
@@ -28,9 +29,7 @@ def getSignature(url):
 
 def getSignStr(data, endpoint):
     s = endpoint + "?"
-    #query_str = "&".join("%s=%s" % (k, params[k]) for k in sorted(params))
-    argDict = sorted(data.items(), key=lambda data:data[0])
-    queryStr = urllib.parse.urlencode(argDict)
+    queryStr = "&".join("%s=%s" % (k, data[k]) for k in sorted(data))
     return s + queryStr
 
 # 获取IPV6地址 适用于 linux系统
@@ -49,20 +48,7 @@ def main():
 
     timestamp = int(time.time())
     nonce = random.randint(1000, 9999)
-    ipv6Addr = '2409:8a62:287:9ab0:b128:51fd:fd4c:d4e3' # getIPAddress()
-
-    '''
-    获取解析记录列表
-    data = {'SecretId': secretId,
-              'Region': 'ap-chengdu',
-              'Timestamp': timestamp,
-              'Nonce': nonce,
-              'SignatureMethod': 'HmacSHA256',
-              'Action': 'RecordList',
-              'offset': '0',
-              'length': '20',
-              'domain': 'qpanda.vip'}
-'''
+    ipv6Addr = getIPAddress()
 
     data = {
               'SecretId': secretId,
@@ -79,10 +65,10 @@ def main():
               'value': ipv6Addr
     }
 
-
     dataUrl = getSignStr(data, endpoint)
     signature = getSignature(dataUrl)
     getUrl = "https://" + dataUrl + "&Signature=" + parse.quote(signature)
+    getUrl = urllib.parse.quote(getUrl, safe=string.printable)
     print(getUrl)
 
     response = urllib.request.urlopen(getUrl)
