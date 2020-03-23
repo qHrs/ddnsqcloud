@@ -15,6 +15,7 @@ import re
 import subprocess
 import random
 import string
+import logging
 import urllib.request
 from urllib import parse
 
@@ -69,10 +70,11 @@ def main():
     signature = getSignature(dataUrl)
     getUrl = "https://" + dataUrl + "&Signature=" + parse.quote(signature)
     getUrl = urllib.parse.quote(getUrl, safe=string.printable)
-    print(getUrl)
+    # print(getUrl)
 
     response = urllib.request.urlopen(getUrl)
-    print(response.read().decode('utf-8'))
+    logging.info(response.read().decode('utf-8'))  # 正常信息
+    # print(response.read().decode('utf-8'))
 
 
 if __name__ == '__main__':
