@@ -16,7 +16,6 @@ import subprocess
 import random
 import urllib.request
 from urllib import parse
-from hashlib import sha256
 
 secretId = ""
 secretKey = ""
