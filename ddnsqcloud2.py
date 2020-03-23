@@ -16,8 +16,8 @@ import subprocess
 import random
 import requests
 
-secret_id = "AKIDsXv46tDggxyiCRd8oL0b9TW6UwGmo4rO"
-secret_key = "SSDoALG0UjjUzPO4XjWVEjyxgKOHUP5V"
+secret_id = ""
+secret_key = ""
 
 
 def get_string_to_sign(method, endpoint, params):

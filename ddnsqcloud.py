@@ -18,9 +18,11 @@ import urllib.request
 from urllib import parse
 from hashlib import sha256
 
+secretId = ""
+secretKey = ""
 
 def getSignature(url):
-    appsecret = "SSDoALG0UjjUzPO4XjWVEjyxgKOHUP5V".encode('utf-8')  # 秘钥
+    appsecret = secretKey.encode('utf-8')  # 秘钥
     data = "GET" + url  # 加密数据
     signature = base64.b64encode(hmac.new(appsecret, data.encode("utf8"), hashlib.sha256).digest())
     return signature
@@ -44,8 +46,7 @@ def main():
     nonce = random.randint(1000, 9999)
     ipv6Addr = '2409:8a62:287:9ab0:b128:51fd:fd4c:d4e3' # getIPAddress()
 
-
-    data = {'SecretId': 'AKIDsXv46tDggxyiCRd8oL0b9TW6UwGmo4rO',
+    data = {'SecretId': secretId,
               'Region': 'ap-chengdu',
               'Timestamp': timestamp,
               'Nonce': nonce,
@@ -58,7 +59,7 @@ def main():
     '''
     获取解析记录列表
     data = {
-        'SecretId': 'AKIDsXv46tDggxyiCRd8oL0b9TW6UwGmo4rO',
+        'SecretId': secretId,
               'Region': 'ap-chengdu',
               'Timestamp': timestamp,
               'Nonce': nonce,
