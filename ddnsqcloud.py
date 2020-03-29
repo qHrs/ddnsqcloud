@@ -22,6 +22,9 @@ from urllib import parse
 secretId = ""
 secretKey = ""
 endpoint = "cns.api.qcloud.com/v2/index.php"
+logging.basicConfig(level=10,
+			format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s',
+             filename=r'ddns.log')      # filename 是将信息写入 text.log  文件中
 
 def getSignature(url):
     data = "GET" + url  # 加密数据
