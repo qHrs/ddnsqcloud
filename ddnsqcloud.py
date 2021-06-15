@@ -38,7 +38,7 @@ def getSignStr(data, endpoint):
 
 # 获取IPV6地址 适用于 linux系统
 def getIPAddress():
-   process = subprocess.Popen("ifconfig | grep global | awk '{print $2}'", shell=True, stdout=subprocess.PIPE)
+   process = subprocess.Popen("/sbin/ifconfig | grep global | awk '{print $2}'", shell=True, stdout=subprocess.PIPE)
    output = (process.stdout.read())
    pattern = '(([a-f0-9]{1,4}:){7}[a-f0-9]{1,4})'
    m = re.search(pattern, str(output))
@@ -73,11 +73,9 @@ def main():
     signature = getSignature(dataUrl)
     getUrl = "https://" + dataUrl + "&Signature=" + parse.quote(signature)
     getUrl = urllib.parse.quote(getUrl, safe=string.printable)
-    # print(getUrl)
 
     response = urllib.request.urlopen(getUrl)
-    logging.info(response.read().decode('utf-8'))  # 正常信息
-    # print(response.read().decode('utf-8'))
+    logging.info("{}-{}-{}".format(time.asctime( time.localtime(time.time())),ipv6Addr,response.read().decode('utf-8')))  # 正常信息
 
 
 if __name__ == '__main__':
