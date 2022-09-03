@@ -1,0 +1,18 @@
+2022-09-03 13:43:30,926 connectionpool.py[line:1001] DEBUG Starting new HTTPS connection (1): https:443
+2022-09-03 13:44:14,360 connectionpool.py[line:1001] DEBUG Starting new HTTPS connection (1): dnsapi.cn:443
+2022-09-03 13:44:14,631 connectionpool.py[line:456] DEBUG https://dnsapi.cn:443 "POST /Record.Modify HTTP/1.1" 200 None
+2022-09-03 13:45:10,975 connectionpool.py[line:1001] DEBUG Starting new HTTPS connection (1): dnsapi.cn:443
+2022-09-03 13:45:11,272 connectionpool.py[line:456] DEBUG https://dnsapi.cn:443 "POST /Record.Modify HTTP/1.1" 200 None
+2022-09-03 13:45:11,275 ddnsqcloud3.py[line:56] INFO Sat Sep  3 13:45:11 2022-2409:8a62:289:1c10:d50f:2a17:9424:ac23-{'status': {'code': '10001', 'message': 'The login token ID is invalid', 'created_at': '2022-09-03 13:45:11'}}
+2022-09-03 13:45:22,430 connectionpool.py[line:1001] DEBUG Starting new HTTPS connection (1): dnsapi.cn:443
+2022-09-03 13:45:22,724 connectionpool.py[line:456] DEBUG https://dnsapi.cn:443 "POST /Record.Modify HTTP/1.1" 200 None
+2022-09-03 13:45:22,727 ddnsqcloud3.py[line:57] INFO Sat Sep  3 13:45:22 2022-2409:8a62:289:1c10:d50f:2a17:9424:ac23-{'status': {'code': '10001', 'message': 'The login token ID is invalid', 'created_at': '2022-09-03 13:45:22'}}
+2022-09-03 13:45:36,285 connectionpool.py[line:1001] DEBUG Starting new HTTPS connection (1): dnsapi.cn:443
+2022-09-03 13:45:36,564 connectionpool.py[line:456] DEBUG https://dnsapi.cn:443 "POST /Record.Modify HTTP/1.1" 200 None
+2022-09-03 13:45:36,570 ddnsqcloud3.py[line:57] INFO Sat Sep  3 13:45:36 2022-2409:8a62:289:1c10:d50f:2a17:9424:ac23-{'status': {'code': '10001', 'message': 'The login token ID is invalid', 'created_at': '2022-09-03 13:45:36'}}
+2022-09-03 14:03:21,896 connectionpool.py[line:1001] DEBUG Starting new HTTPS connection (1): dnsapi.cn:443
+2022-09-03 14:03:22,227 connectionpool.py[line:456] DEBUG https://dnsapi.cn:443 "POST /Record.Modify HTTP/1.1" 200 None
+2022-09-03 14:03:22,237 ddnsqcloud3.py[line:57] INFO Sat Sep  3 14:03:22 2022-2409:8a62:289:1c10:d50f:2a17:9424:ac23-{'status': {'code': '10001', 'message': 'The login token ID is invalid', 'created_at': '2022-09-03 14:03:22'}}
+2022-09-03 14:06:09,127 connectionpool.py[line:1001] DEBUG Starting new HTTPS connection (1): dnsapi.cn:443
+2022-09-03 14:06:09,491 connectionpool.py[line:456] DEBUG https://dnsapi.cn:443 "POST /Record.Modify HTTP/1.1" 200 None
+2022-09-03 14:06:09,499 ddnsqcloud3.py[line:57] INFO Sat Sep  3 14:06:09 2022-2409:8a62:289:1c10:d50f:2a17:9424:ac23-{'status': {'code': '1', 'message': '操作已经成功完成', 'created_at': '2022-09-03 14:06:09'}, 'record': {'id': 1192013467, 'name': 'kb', 'value': '2409:8a62:289:1c10:d50f:2a17:9424:ac23', 'status': 'enable', 'weight': None}}
