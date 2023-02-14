@@ -12,7 +12,7 @@ import logging
 import requests
 
 token = ""
-url = "https://dnsapi.cn/Record.Modify"
+url = "https://dnsapi.cn/Record.Ddns"  # https://dnsapi.cn/Record.Modify"
 logging.basicConfig(level=10,
 			format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s',
              filename=r'ddns.log')      # filename 是将信息写入 text.log  文件中
@@ -41,7 +41,7 @@ def main():
               'sub_domain': 'kb',
               'record_type': 'AAAA',
               'record_line': '默认',
-              'mx': '1',
+              'record_line_id': '0',
               'value': ipv6Addr
     }
 
